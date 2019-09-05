@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  itemno: 1
+  quest_txt: MyString
+  choice1: MyString
+  choice2: MyString
+  choice3: MyString
+  choice4: MyString
+  answer: MyString
+  quiz_id: 1
+
+two:
+  itemno: 1
+  quest_txt: MyString
+  choice1: MyString
+  choice2: MyString
+  choice3: MyString
+  choice4: MyString
+  answer: MyString
+  quiz_id: 1
