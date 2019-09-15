@@ -12,6 +12,10 @@ class QuestionsController < ApplicationController
   def show
   end
 
+  def next
+    @question = Question.find_by_id(params[:itemno])
+  end
+
   # GET /questions/new
   def new
     @question = Question.new
