@@ -15,8 +15,25 @@
 @import "bootstrap";
 
 
+@font-face {
+   font-family: 'Noto Sans';
+   src: asset-url('/assets/NotoSans-Regular.ttf');
+}
+
+@font-face {
+   font-family: 'Noto Sans';
+   src: asset-url('/assets/NotoSans-Bold.ttf');
+   font-weight:bold;
+}
+
+
+body{
+	font-family: 'Noto Sans', sans-serif;
+}
+
 .site-container{
 	height:100vh;
+	width: 100vw;
 }
 
 .larong-pinoy-header{
