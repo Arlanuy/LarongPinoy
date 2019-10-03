@@ -9,12 +9,17 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= favicon_link_tag asset_path('favicon.ico') %>
   </head>
 
   <body>
     <div class="site-container">
       <nav class="navbar navbar-expand-lg navbar-light larong-pinoy-header fixed-top">
-        <a class="navbar-brand" href="#">Larong Pinoy</a>
+        <a class="navbar-brand" href="#">
+          <%= image_tag("/assets/tsinelas.png",  alt: "Larong Pinoy Slipper-P Logo" , class: "logo") %> 
+          <span class="font-weight-bold">Larong Pinoy</span>
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
