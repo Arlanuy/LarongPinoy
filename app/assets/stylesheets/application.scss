@@ -27,16 +27,15 @@
 }
 
 
-body{
+html{
 	font-family: 'Noto Sans', sans-serif;
 	background-color: #fdfdfd;
+	border-right: 1vw #770000 solid;
+	border-left: 1vw #000077 solid;
 }
 
 .site-container{
-	height:100vh;
-	width: 100vw;
-	border-right: 1vw #770000 solid;
-	border-left: 1vw #000077 solid;
+	height:100vh; 
 }
 
 .larong-pinoy-header{

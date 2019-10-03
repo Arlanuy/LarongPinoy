@@ -16,7 +16,7 @@
   <body>
     <div class="site-container">
       <nav class="navbar navbar-expand-lg navbar-light larong-pinoy-header fixed-top">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="<%= home_path %>">
           <%= image_tag("/assets/tsinelas.png",  alt: "Larong Pinoy Slipper-P Logo" , class: "logo") %> 
           <span class="font-weight-bold">Larong Pinoy</span>
         </a>
@@ -36,6 +36,10 @@
         </div>
       </nav>
       <%= yield %>
+
+      <div class="p-3 text-center">
+        <span class="">Application created by Arlan Uy and Menard Cruz for CS 173</span>
+      </div>
     </div>
   </body>
 </html>
