@@ -10,7 +10,10 @@ class QuestionsController < ApplicationController
   # GET /questions/1
   # GET /questions/1.json
   def show
+
   end
+
+
 
   # GET /questions/new
   def new
@@ -40,10 +43,20 @@ class QuestionsController < ApplicationController
   # PATCH/PUT /questions/1
   # PATCH/PUT /questions/1.json
   def update
+    if params.has_key?(:question)
+      @question.update_attributes(params[:question].permit(:role_ids))
+    end
     respond_to do |format|
+
       if @question.update(question_params)
-        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
-        format.json { render :show, status: :ok, location: @question }
+
+        if @question.answer == @question.guess
+          format.html { redirect_to @question, notice: 'Answer is correct.' }
+          format.json { render :show, status: :ok, location: @question }
+        else
+          format.html { redirect_to @question, notice: 'Answer is incorrect. Correct choice is ' + @question.answer }
+          format.json { render :show, status: :ok, location: @question }
+        end
       else
         format.html { render :edit }
         format.json { render json: @question.errors, status: :unprocessable_entity }
@@ -69,6 +82,6 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:itemno, :quest_txt, :choice1, :choice2, :choice3, :choice4, :answer, :quiz_id)
+      params.require(:question).permit(:itemno, :quest_txt, :choice1, :choice2, :choice3, :choice4, :answer, :quiz_id, :guess)
     end
 end

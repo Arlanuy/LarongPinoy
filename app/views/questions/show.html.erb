@@ -22,7 +22,7 @@
 
 <p>
   <strong>Choice3:</strong>
-  <%= @question.choice3 %>
+  <%=  @question.choice3 %>
 </p>
 
 <p>
@@ -30,10 +30,20 @@
   <%= @question.choice4 %>
 </p>
 
-<p>
-  <strong>Answer:</strong>
-  <%= @question.answer %>
-</p>
+
+
+<%= form_for @question do |f| %>
+<%= f.label :guess %>
+<%= f.text_field :guess %> <br/>
+
+<%= f.submit 'Submit answer', class: "ui right floated green submit button" %>
+
+<% end %>
+
+
+
+
+
 
 <p>
   <strong>Quiz:</strong>
