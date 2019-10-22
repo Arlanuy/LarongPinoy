@@ -4,4 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :questions
+  has_one :user_quiz
+  has_one :quiz, :through => :user_quiz
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191008060803) do
+ActiveRecord::Schema.define(version: 20191022071120) do
 
   create_table "questions", force: :cascade do |t|
     t.integer "itemno"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20191008060803) do
     t.datetime "updated_at", null: false
     t.integer "quiz_id"
     t.string "guess"
+    t.integer "user_id"
+    t.boolean "is_correct"
     t.index ["quiz_id"], name: "index_questions_on_quiz_id"
   end
 
@@ -31,6 +33,24 @@ ActiveRecord::Schema.define(version: 20191008060803) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_quizzes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "quiz_id"
+    t.integer "score", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_score_quizzes", force: :cascade do |t|
+    t.integer "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "quiz_id"
+    t.index ["quiz_id"], name: "index_user_score_quizzes_on_quiz_id"
+    t.index ["user_id"], name: "index_user_score_quizzes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -51,7 +51,9 @@ class QuestionsController < ApplicationController
       if @question.update(question_params)
 
         if @question.answer == @question.guess
-          format.html { redirect_to @question, notice: 'Answer is correct.' }
+          @question.quiz.user_quiz.score = @question.quiz.user_quiz.score + 1
+          @question.quiz.user_quiz.save
+          format.html { redirect_to @question, notice: 'Answer is correct.' + @question.quiz.user_quiz.score.to_s }
           format.json { render :show, status: :ok, location: @question }
         else
           format.html { redirect_to @question, notice: 'Answer is incorrect. Correct choice is ' + @question.answer }
