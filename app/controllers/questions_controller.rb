@@ -43,6 +43,7 @@ class QuestionsController < ApplicationController
   # PATCH/PUT /questions/1
   # PATCH/PUT /questions/1.json
   def update
+    @question.quiz.user_score_quiz.user = current_user
     if params.has_key?(:question)
       @question.update_attributes(params[:question].permit(:role_ids))
     end
@@ -54,7 +55,7 @@ class QuestionsController < ApplicationController
           format.html { redirect_to @question, notice: 'Answer is correct.' }
           format.json { render :show, status: :ok, location: @question }
         else
-          format.html { redirect_to @question, notice: 'Answer is incorrect. Correct choice is ' + @question.answer }
+          format.html { redirect_to @question, notice: 'Answer is incorrect. Correct choice is ' + @question.answer + @question.quiz.user_score_quiz.user}
           format.json { render :show, status: :ok, location: @question }
         end
       else
