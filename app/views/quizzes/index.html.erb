@@ -1,27 +1,41 @@
-<p id="notice"><%= notice %></p>
+<div class="w-100 h-100 d-flex">
+  <div class="container mt-5 d-flex">
+    <div class="d-flex flex-column w-100">
+      <p id="notice"><%= notice %></p>
 
-<h1>Quizzes</h1>
+      <h1 class="text-center">Quizzes</h1>
+      <% if current_user %>
+        <%= link_to 'New Quiz', new_quiz_path, class: "text-center" %>
+      <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <table>
+        
+        <tbody>
+          <div class="row">
+            <% @quizzes.each do |quiz| %>
+              <div class="col-6 d-flex">
+                <a href="<%= quiz_path(quiz) %>" class="d-flex mt-3 w-100">
+                  <button class="btn btn-light btn-lg bg-yellow px-3 mx-auto " type="button">
+                    <span class="h5"><%= quiz.name %></span>
+                  </button>
+                </a>
 
-  <tbody>
-    <% @quizzes.each do |quiz| %>
-      <tr>
-        <td><%= quiz.name %></td>
-        <td><%= link_to 'Show', quiz %></td>
-        <td><%= link_to 'Edit', edit_quiz_path(quiz) %></td>
-        <td><%= link_to 'Destroy', quiz, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+                <% if current_user %>
 
-<br>
+                  <%= link_to 'Edit', edit_quiz_path(quiz), class: "my-auto" %>
+                  <%= link_to 'Destroy', quiz, method: :delete, class: "my-auto mx-3", data: { confirm: 'Are you sure?' } %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </tbody>
+      </table>
 
-<%= link_to 'New Quiz', new_quiz_path %>
+      <br>
+
+      
+    </div>  
+  </div>
+</div>
+
+
