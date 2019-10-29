@@ -1,9 +1,15 @@
-<p id="notice"><%= notice %></p>
+<div class="w-100 h-100 d-flex">
+	<div class="container mt-5 pt-5 d-flex">
+		<div class="mt-5 mx-auto pt-5 d-flex flex-column">
 
-<p>
-  <strong>Name:</strong>
-  <%= @quiz.name %>
-</p>
-<%= link_to 'Start Quiz', Question.where(quiz_id: @quiz.id).first %>
-<%= link_to 'Edit', edit_quiz_path(@quiz) %> |
-<%= link_to 'Back', quizzes_path %>
+			<p id="notice"><%= notice %></p>
+
+			<h1 class="mb-4"><%= @quiz.name %></h1>
+
+			<%= link_to 'Start Quiz', Question.where(quiz_id: @quiz.id).first, class: "btn btn-light bg-yellow" %>
+			
+		</div>	
+	</div>
+</div>
+
+

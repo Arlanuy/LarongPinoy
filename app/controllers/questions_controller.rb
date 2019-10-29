@@ -4,7 +4,11 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    if current_user
+      @questions = Question.all
+    else
+      redirect_to home_path
+    end
   end
 
   # GET /questions/1

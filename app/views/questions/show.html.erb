@@ -1,54 +1,82 @@
-<p id="notice"><%= notice %></p>
+<div class="w-100 h-100 d-flex">
+  <div class="container mt-5 d-flex">
+    <div class="mt-5 d-flex flex-column w-100">
+    
+      <div class="row w-100">
+        <div class="col-lg-6">
+          <p class="h3 mt-4">
+            <%= @question.quest_txt %>
+          </p>
 
-<p>
-  <strong>Itemno:</strong>
-  <%= @question.itemno %>
-</p>
+          
+            <%= form_for @question do |f| %>
 
-<p>
-  <strong>Quest txt:</strong>
-  <%= @question.quest_txt %>
-</p>
+              <div class="my-4">
+                <div class="field">
+                  <%= f.radio_button :guess, @question.choice1 %>
+                  <%= f.label :guess, "a. "+@question.choice1, :value => @question.choice1  %>
+                </div>
 
-<p>
-  <strong>Choice1:</strong>
-  <%= @question.choice1 %>
-</p>
+                <div class="field">
+                  <%= f.radio_button :guess, @question.choice2 %>
+                  <%= f.label :guess, "b. "+@question.choice2, :value => @question.choice2 %>
+                </div>
 
-<p>
-  <strong>Choice2:</strong>
-  <%= @question.choice2 %>
-</p>
+                <div class="field">  
+                  <%= f.radio_button :guess, @question.choice3 %>
+                  <%= f.label :guess, "c. "+@question.choice3, :value => @question.choice3 %>
+                </div>
 
-<p>
-  <strong>Choice3:</strong>
-  <%=  @question.choice3 %>
-</p>
+                <div class="field">
+                  <%= f.radio_button :guess, @question.choice4 %>
+                  <%= f.label :guess, "d. "+@question.choice4, :value => @question.choice4 %>
+                </div>
 
-<p>
-  <strong>Choice4:</strong>
-  <%= @question.choice4 %>
-</p>
+              </div>
 
-
-
-<%= form_for @question do |f| %>
-<%= f.label :guess %>
-<%= f.text_field :guess %> <br/>
-
-<%= f.submit 'Submit answer', class: "ui right floated green submit button" %>
-
-<% end %>
-
+              <%= f.submit 'Submit answer', class: "ui right floated green submit button btn btn-success" %>
+            <% end %>
+           
+        </div>
+         <div class="col-lg-6 d-flex flex-column">
+        
+            <p class="text-center h2 font-weight-bold">
+              <%= Quiz.where(id: @question.quiz_id).first.name %>
+            </p>
+            <div class="w-100 py-2 d-flex bg-yellow">
+              <span class="mx-auto">Item No. <%= @question.itemno %>    </span>
+            </div>
 
 
+            <p id="notice" class="text-center text-white  
+
+              <% if notice == "Answer is correct." %>
+                bg-success
+              <% else %>
+                bg-danger
+              <% end %>
+            ">
+              <%= notice %>
+            </p>
+
+            <div class="d-flex ml-auto mt-3">
+              <%= link_to 'Next Question', Question.where(quiz_id: @question.quiz_id, itemno: (@question.itemno + 1)).take, class: "btn-light p-2" %>
+
+              <% if current_user %>
+                <span class="ml-3 mr-1 my-auto">
+                  <%= link_to 'Edit', edit_question_path(@question) %>
+                </span>
+              <% end %>
+            </div>
 
 
+        </div>
+      </div>
+      
 
-<p>
-  <strong>Quiz:</strong>
-  <%= @question.quiz_id %>
-</p>
-<%= link_to 'Next Question', Question.where(quiz_id: @question.quiz_id, itemno: (@question.itemno + 1)).take %>
-<%= link_to 'Edit', edit_question_path(@question) %> |
-<%= link_to 'Back', questions_path %>
+      
+
+    </div>  
+  </div>
+</div>
+
