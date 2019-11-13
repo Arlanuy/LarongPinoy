@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UserScoreQuizControllerTest < ActionDispatch::IntegrationTest
+class ScoreTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

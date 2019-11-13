@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191022061116) do
+ActiveRecord::Schema.define(version: 20191113114850) do
 
   create_table "questions", force: :cascade do |t|
     t.integer "itemno"
@@ -35,14 +35,22 @@ ActiveRecord::Schema.define(version: 20191022061116) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_score_quizzes", force: :cascade do |t|
-    t.integer "score"
+  create_table "scores", force: :cascade do |t|
+    t.integer "quiz_score", default: 0
+    t.string "scoreable_type"
+    t.integer "scoreable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.index ["scoreable_type", "scoreable_id"], name: "index_scores_on_scoreable_type_and_scoreable_id"
+  end
+
+  create_table "user_quizzes", force: :cascade do |t|
     t.integer "user_id"
     t.integer "quiz_id"
-    t.index ["quiz_id"], name: "index_user_score_quizzes_on_quiz_id"
-    t.index ["user_id"], name: "index_user_score_quizzes_on_user_id"
+    t.integer "score", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

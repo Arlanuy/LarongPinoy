@@ -22,6 +22,7 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = Question.new
+
   end
 
   # GET /questions/1/edit
@@ -47,7 +48,7 @@ class QuestionsController < ApplicationController
   # PATCH/PUT /questions/1
   # PATCH/PUT /questions/1.json
   def update
-    @question.quiz.user_score_quiz.user = current_user
+
     if params.has_key?(:question)
       @question.update_attributes(params[:question].permit(:role_ids))
     end
@@ -56,10 +57,16 @@ class QuestionsController < ApplicationController
       if @question.update(question_params)
 
         if @question.answer == @question.guess
-          format.html { redirect_to @question, notice: 'Answer is correct.' }
+
+         #@question.quiz.scores.first.quiz_score = @question.quiz.scores.first.quiz_score + 1
+         #@question.quiz.scores.last.increment(:quiz_score, by = 1)
+         #@question.quiz.scores.first.update_attribute(:quiz_score, @question.quiz.scores.first.quiz_score += 1)
+         @question.quiz.scores.last.update_attribute(:quiz_score, @question.quiz.scores.last.quiz_score += 1)
+         @question.quiz.scores.last.save
+          format.html { redirect_to @question, notice: 'Answer is correct. Current score: ' + @question.quiz.scores.last.quiz_score.to_s + ' of ' + current_user.email.split('@')[0].to_s}
           format.json { render :show, status: :ok, location: @question }
         else
-          format.html { redirect_to @question, notice: 'Answer is incorrect. Correct choice is ' + @question.answer + @question.quiz.user_score_quiz.user}
+          format.html { redirect_to @question, notice: 'Answer is incorrect. Correct choice is ' + @question.answer.to_s + ' ' + current_user.email..split('@')[0].to_s}
           format.json { render :show, status: :ok, location: @question }
         end
       else

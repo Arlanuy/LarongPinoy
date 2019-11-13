@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  quiz_score: 1
+  scoreable: one
+  scoreable_type: Scoreable
+
+two:
+  quiz_score: 1
+  scoreable: two
+  scoreable_type: Scoreable

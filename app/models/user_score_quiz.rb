@@ -1,4 +1,4 @@
 class UserScoreQuiz < ApplicationRecord
-  has_one :quiz
-  has_one :user
+  belongs_to :quiz
+  belongs_to :user
 end

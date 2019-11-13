@@ -5,17 +5,20 @@ class QuizzesController < ApplicationController
   # GET /quizzes.json
   def index
     @quizzes = Quiz.all
+
   end
 
   # GET /quizzes/1
   # GET /quizzes/1.json
   def show
-    @quiz.user_score_quiz = UserScoreQuiz.new(user_score_quiz_params)
+
+
   end
 
   # GET /quizzes/new
   def new
     @quiz = Quiz.new
+
   end
 
   # GET /quizzes/1/edit
@@ -66,6 +69,12 @@ class QuizzesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz
       @quiz = Quiz.find(params[:id])
+      if current_user
+        created = Score.create
+        created.update_attribute(:name, current_user.email.split('@')[0])
+        created.save
+        @quiz.scores.append(created)
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
