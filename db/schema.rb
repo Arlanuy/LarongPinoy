@@ -45,14 +45,6 @@ ActiveRecord::Schema.define(version: 20191113114850) do
     t.index ["scoreable_type", "scoreable_id"], name: "index_scores_on_scoreable_type_and_scoreable_id"
   end
 
-  create_table "user_quizzes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "quiz_id"
-    t.integer "score", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
