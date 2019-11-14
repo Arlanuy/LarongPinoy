@@ -66,7 +66,7 @@ class QuestionsController < ApplicationController
           format.html { redirect_to @question, notice: 'Answer is correct. Current score: ' + @question.quiz.scores.last.quiz_score.to_s + ' of ' + current_user.email.split('@')[0].to_s}
           format.json { render :show, status: :ok, location: @question }
         else
-          format.html { redirect_to @question, notice: 'Answer is incorrect. Correct choice is ' + @question.answer.to_s + ' ' + current_user.email..split('@')[0].to_s}
+          format.html { redirect_to @question, notice: 'Answer is incorrect. Correct choice is ' + @question.answer.to_s + ' ' + current_user.email.split('@')[0].to_s}
           format.json { render :show, status: :ok, location: @question }
         end
       else
