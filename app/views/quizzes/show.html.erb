@@ -7,9 +7,29 @@
 			<h1 class="mb-4"><%= @quiz.name %></h1>
 
 			<%= link_to 'Start Quiz', Question.where(quiz_id: @quiz.id).first, class: "btn btn-light bg-yellow" %>
-			
-		</div>	
+			<tr> "High Scores"</tr>
+			<% $scores_hash = Hash.new %>
+			<% @quiz.scores.each do |score| %>
+				<tr>
+					<% $scores_hash[score.name] %>
+				</tr>
+				<tr>
+					<%  score.quiz_score %>
+				</tr>
+				<% if not $scores_hash[score.name] %>
+					<% $scores_hash[score.name] = score.quiz_score%>
+				<% end %>
+				<% if score.quiz_score > $scores_hash[score.name] %>
+					<% $scores_hash[score.name] = score.quiz_score%>
+				<% end %>
+			<% end %>
+			<% $scores_hash.sort_by(&:first).reverse %>
+			<% $scores_hash.keys.each do |filtered_score| %>
+				<tr>
+					<td><%= filtered_score %></td>
+					<td><%= $scores_hash[filtered_score]%></td>
+				</tr>
+			<% end %>
+		</div>
 	</div>
 </div>
-
-
